@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: ter-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ter_senegal
+      POSTGRES_USER: ter_user
+      POSTGRES_PASSWORD: ter_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - ter_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ter_user -d ter_senegal"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  ter_postgres_data:
