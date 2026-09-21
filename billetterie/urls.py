@@ -2,16 +2,9 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 
 from .views import (
-    AchatBilletView,
-    BilletViewSet,
-    GareViewSet,
-    PaiementViewSet,
-    SiegeViewSet,
-    StatistiquesView,
-    TarifViewSet,
-    TrainViewSet,
-    VoyageViewSet,
-    WagonViewSet,
+    AchatBilletView, BilletViewSet, GareViewSet, PaiementViewSet,
+    RechercherVoyageView, SiegeViewSet, StatistiquesView, TarifViewSet,
+    TrainViewSet, VoyageViewSet, WagonViewSet,
 )
 
 router = DefaultRouter()
@@ -26,5 +19,6 @@ router.register("paiements", PaiementViewSet, basename="paiement")
 
 urlpatterns = [
     path("achat/", AchatBilletView.as_view(), name="achat-billet"),
+    path("voyages/rechercher/", RechercherVoyageView.as_view(), name="rechercher-voyage"),
     path("statistiques/", StatistiquesView.as_view(), name="statistiques"),
 ] + router.urls
